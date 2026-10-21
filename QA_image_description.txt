@@ -1,0 +1,52 @@
+This image is a detailed infographic depicting a **Knowledge Graph for an Engine Fuel Injector**. It illustrates the lifecycle and relationships between different operational domains of a company, organized into four distinct layers.
+
+At the top right, a slogan reads: "From data to reliable trucks. Connected assets. Sustainable uptime."
+
+The graph is divided into the following layers, each color-coded:
+
+### 1. Information Layer (Blue)
+This layer contains technical specifications and regulatory requirements.
+*   **Certification / Regulatory Requirement:** "Euro 7" (Emission standard for heavy-duty vehicles).
+*   **Relationship:** This requirement is linked via a "COMPLIES_WITH" relationship to the Spare Part.
+
+### 2. System Layer (Green)
+This layer focuses on physical and digital systems.
+*   **Spare Part:** "Engine Fuel Injector" (Part number: 23459876, Weight: 0.8 kg, Material: High-strength steel, Status: Active).
+*   **Main Component:** "Volvo D13 Engine" (Model: D13K, Displacement: 12.8 L, Type: 6-cylinder diesel, Emissions: Euro 7 ready).
+*   **Truck Model:** "Volvo FH16" (Series: FH16, Application: Heavy haulage, Gross weight: 250 t, Emissions: Euro 7).
+*   **Software:** "Engine control software" (ECU: Volvo EMS, Function: Controls injection, Version: 6.2.1, Status: Active).
+*   **Relationships:** 
+    *   The Spare Part is "PART_OF" the Main Component.
+    *   The Main Component is "INSTALLED_IN" the Truck Model.
+    *   The Software "CONTROLS" the Main Component.
+
+### 3. Organization Layer (Orange/Red)
+This layer represents the people and organizations involved.
+*   **Supplier:** "Injector manufacturer" (Name: Bosch (example), Location: Stuttgart, Germany, Type: Tier 1 supplier, Status: Approved).
+*   **Organization:** "Volvo Group" (Type: OEM, Headquarters: Gothenburg, Sweden, Role: Designs, builds and services trucks, Status: Active).
+*   **Relationships:** 
+    *   The Supplier "SUPPLIES_TO" the Organization.
+    *   The Organization "MANUFACTURES" the Spare Part.
+
+### 4. Process Layer (Purple)
+This layer details the business and operational processes.
+*   **Purchasing:** (Procures engine parts, Type: Procurement process, Owner: Supply Chain, Goal: Secure supply, Status: Active).
+*   **Predictive Maintenance:** (Monitors injector health, Type: Maintenance process, Owner: Fleet Operations, Goal: Prevent unplanned downtime, Status: Active).
+*   **IT System (Dark Blue):** "SAP ERP / PLM" (Type: Enterprise system, Function: Manages parts, BOM, lifecycle, Users: Supply Chain, Engineering, Service, Status: Active).
+*   **Relationships:**
+    *   The Purchasing process is a "SOURCE" for the Spare Part.
+    *   The Predictive Maintenance process "USES_DATA_FROM" the Spare Part.
+    *   The Organization "MANAGES" the Predictive Maintenance process.
+    *   The Purchasing and Predictive Maintenance processes both "USE" the IT System.
+
+### Legend (Bottom Right)
+*   **Node types (by color):**
+    *   Blue: Information (specifications, regulations)
+    *   Green: System (physical and digital systems)
+    *   Orange: Organization (companies, suppliers)
+    *   Purple: Process (business processes)
+    *   Dark Blue: IT System (enterprise applications)
+*   **Relationship (directed edge):** Indicated by an arrow showing direction (from $\rightarrow$ to) with a label describing the relationship.
+*   **Node shape convention:** Rectangles with an icon and key details represent an "Entity node."
+
+The bottom of the image contains the footer: "Volvo Group | Knowledge Graph Example" on the left and "Parts. People. Processes. A more productive world." on the right.
