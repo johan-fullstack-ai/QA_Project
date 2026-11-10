@@ -1,0 +1,43 @@
+%% Project architecture. Open this file with a Mermaid-compatible viewer.
+%% Both scripts resolve their input and output paths relative to the working directory.
+flowchart LR
+    user["User"] --> imageQA["QA_pic.py<br/>Image and knowledge-graph QA"]
+    user --> textQA["POC_st.py<br/>Text-answer QA proof of concept"]
+
+    subgraph imageFiles["Image QA files"]
+        images["Graph.png and Graph2.png"]
+        descriptions["Image description Markdown files"]
+        graphs["Per-run knowledge graph JSON files"]
+        imageResults["QA_pic_results.json<br/>QA_pic2_results.json"]
+    end
+
+    images --> imageQA
+    descriptions -->|"reuse when present"| imageQA
+    imageQA -->|"save if absent"| descriptions
+    graphs -->|"reuse when enabled and present"| imageQA
+    imageQA -->|"generate and save"| graphs
+    imageQA --> imageResults
+
+    subgraph textFiles["Text QA files"]
+        source["jupitermoons.txt<br/>External source file, required by PoC"]
+        textResults["poc_results_semantic.json"]
+    end
+
+    source --> textQA
+    textQA --> textResults
+
+    subgraph services["Model and numerical dependencies"]
+        ollamaImage["Ollama generate HTTP API<br/>Configured image model: gemma4:31b-cloud"]
+        ollamaText["Ollama Python chat API<br/>Configured text model: llama3.2:1b"]
+        embedder["SentenceTransformer<br/>all-MiniLM-L6-v2"]
+        numpy["NumPy<br/>vector similarity"]
+    end
+
+    imageQA <-->|"image and prompts / responses"| ollamaImage
+    textQA <-->|"source and question / responses"| ollamaText
+    imageQA --> embedder
+    textQA --> embedder
+    imageQA --> numpy
+    textQA --> numpy
+    imageQA -->|"progress and metrics"| user
+    textQA -->|"progress and metrics"| user

@@ -1,0 +1,23 @@
+%% Text QA proof-of-concept workflow from POC_st.py. Values shown are the current defaults.
+%% Semantic similarity is a heuristic against the source, not proof of factual correctness.
+flowchart TD
+    start(["Start POC_st.py"]) --> exists{"jupitermoons.txt exists?"}
+    exists -- "No" --> missing["Report missing source file"]
+    missing --> done(["End"])
+    exists -- "Yes" --> source["Read source text"]
+    source --> prompt["Build prompt from source text<br/>and the configured question"]
+    prompt --> wait["Wait for Enter"]
+    wait --> repeat["Run Ollama chat 5 times<br/>and collect responses"]
+    repeat --> consistency["Compute average pairwise<br/>text consistency"]
+    repeat --> semantic["Embed each response and source;<br/>compute cosine similarity per response"]
+    semantic --> average["Average semantic alignment"]
+    consistency --> lowAlignment{"Average alignment below 0.60?"}
+    average --> lowAlignment
+    lowAlignment -- "Yes" --> high["Risk: High"]
+    lowAlignment -- "No" --> lowConsistency{"Consistency below 0.60?"}
+    lowConsistency -- "Yes" --> medium["Risk: Medium"]
+    lowConsistency -- "No" --> low["Risk: Low"]
+    high --> output["Print metrics and save<br/>poc_results_semantic.json"]
+    medium --> output
+    low --> output
+    output --> done

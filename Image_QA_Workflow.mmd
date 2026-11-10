@@ -1,0 +1,54 @@
+%% Image QA workflow from QA_pic.py. Values shown are the current defaults.
+%% Semantic similarity is a heuristic against the description, not proof of image correctness.
+flowchart TD
+    start(["Start QA_pic.py"]) --> nextTest["For each configured image:<br/>wait for Enter"]
+    nextTest --> exists{"Image file exists?"}
+    exists -- "No" --> skip["Skip this image"]
+    skip --> moreTests{"More images?"}
+    exists -- "Yes" --> encode["Read image and base64-encode it"]
+    encode --> hasDescription{"Description file exists?"}
+    hasDescription -- "Yes" --> readDescription["Read existing description"]
+    hasDescription -- "No" --> describe["Ask Ollama for a description<br/>and save the Markdown file"]
+    readDescription --> beginRuns["Repeat up to 5 graph runs"]
+    describe --> beginRuns
+
+    beginRuns --> reuse{"Reuse enabled and<br/>graph file exists?"}
+    reuse -- "Yes" --> load["Load graph JSON"]
+    reuse -- "No" --> generate["Ask Ollama for graph JSON"]
+    load --> validJSON{"JSON parsed?"}
+    validJSON -- "No" --> generate
+    validJSON -- "Yes" --> validate["Validate layers, nodes,<br/>edges and references"]
+    generate --> parse{"Model response parses as JSON?"}
+    parse -- "No" --> failedRun["Report failed run"]
+    parse -- "Yes" --> saveGraph["Save per-run graph JSON"]
+    saveGraph --> validate
+    validate --> validGraph{"Structure valid?"}
+    validGraph -- "No" --> failedRun
+    validGraph -- "Yes" --> sentences["Convert graph nodes and edges<br/>into sentences"]
+    sentences --> anySentences{"Sentences produced?"}
+    anySentences -- "No" --> failedRun
+    anySentences -- "Yes" --> chunks["Chunk the image description<br/>by heading and word limit"]
+    chunks --> embeddings["Embed chunks and graph sentences"]
+    embeddings --> alignment["For each sentence, take its<br/>best chunk cosine similarity"]
+    alignment --> record["Record sentence scores and<br/>mean alignment for this run"]
+    record --> moreRuns{"More runs?"}
+    failedRun --> moreRuns
+    moreRuns -- "Yes" --> reuse
+    moreRuns -- "No" --> validRuns{"Any valid runs?"}
+    validRuns -- "No" --> noResults["Report that there is nothing to evaluate"]
+    noResults --> moreTests
+    validRuns -- "Yes" --> consistency["Compute pairwise text consistency<br/>across sorted run sentences"]
+    consistency --> low{"Any sentence below<br/>alignment threshold?"}
+    low -- "Yes" --> high["Risk: High"]
+    low -- "No" --> unstable{"Consistency below 0.60?"}
+    unstable -- "Yes" --> medium["Risk: Medium"]
+    unstable -- "No" --> lowRisk["Risk: Low"]
+    high --> output["Print metrics and save results JSON"]
+    medium --> output
+    lowRisk --> output
+    output --> moreTests
+    moreTests -- "Yes" --> nextTest
+    moreTests -- "No" --> done(["End"])
+
+    threshold["Default fast chunk mode uses alignment threshold 0.186.<br/>Line-based mode uses 0.5.<br/>One valid run gets consistency 1.0, which is not meaningful."]
+    alignment -.- threshold
