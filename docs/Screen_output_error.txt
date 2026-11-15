@@ -1,0 +1,123 @@
+Using model: gemma4:31b-cloud, repeats: 2
+------------------------------------------------------------
+Press Enter to continue...
+Read and encoded image from file: Graph.png
+Describing the image...
+Using existing description from QA_image_description.txt
+
+--- Image description ---
+Knowledge Graph for an Engine Fuel Injector, depicting the lifecycle and relationships across different organizational and system layers.
+
+The diagram is divided into four main colored sections (layers), with a legend explaining the node types and relationships.
+
+1. Information Layer (Blue)
+This layer contains technical information and requirements.
+
+Certification / Regulatory Requirement: A node for "Euro 7," which is an emission standard for heavy-duty vehicles.
+Relationship: The "Engine Fuel Injector" COMPLIES_WITH the "Euro 7" standard.
+2. System Layer (Green)
+This layer represents physical and digital systems.
+
+Spare Part: "Engine Fuel Injector." Details include part number (23459876), weight (0.8 kg), material (high-strength steel), and status (Active).
+Main Component: "Volvo D13 Engine." Details include model (D13K), displacement (12.8 L), type (6-cylinder diesel), and emissions (Euro 7 ready).
+Truck Model: "Volvo FH16." Details include series (FH16), application (heavy haulage), gross weight (GCW 250 t), and emissions (Euro 7).
+Software: "Engine control software." Details include ECU (Volvo EMS), function (controls injection), version (6.2.1), and status (Active).
+Relationships:
+The Fuel Injector is PART_OF the Volvo D13 Engine.
+The Engine is INSTALLED_IN the Volvo FH16 truck.
+The Software CONTROLS the Fuel Injector.
+3. Organization Layer (Orange)
+This layer represents people and organizations.
+
+Supplier: "Injector manufacturer." Located in Stuttgart, Germany. Status is approved.
+Organization: "Volvo Group." Based in Gothenburg, Sweden. Their role is to design, build, and service trucks.
+Relationships:
+The Injector manufacturer MANUFACTURES the Fuel Injector.
+The Injector manufacturer SUPPLIES_TO the Volvo Group.
+The Volvo Group USES the IT System.
+4. Process Layer (Purple)
+This layer focuses on business and operational processes.
+
+Purchasing: A process to procure engine parts, owned by the Supply Chain.
+Predictive Maintenance: A process to monitor injector health to prevent unplanned downtime, owned by Fleet Operations.
+IT System: "SAP ERP / PLM." An enterprise system used by Supply Chain, Engineering, and Service.
+Relationships:
+The Purchasing process is a SOURCE for the Fuel Injector.
+Predictive Maintenance USES_DATA_FROM the Fuel Injector.
+The IT System MANAGES both the Purchasing and Predictive Maintenance processes.
+Legend (Bottom Right)
+Node Types (by color):
+Blue: Information
+Green: System
+Orange: Organization
+Purple: Process
+Light Blue: IT System
+Relationship: Directed edges (arrows) show the relationship from one node to another, with labels describing the nature of the link.
+Node Shape: Entity nodes are represented by an icon with key details listed below.
+Footer: The image concludes with "Volvo Group | Knowledge Graph Example" and the tagline "Parts. People. Processes. A more productive world."
+
+=== Run 1/2 ===
+Saved knowledge graph to QA_knowledge_graph_run1.json
+Structure test OK
+
+=== Run 2/2 ===
+Saved knowledge graph to QA_knowledge_graph_run2.json
+Structure test OK
+
+--- Run 1: sentences and alignment (vs. image text) ---
+0.421  Euro 7 is in Information Layer.
+0.616  Engine Fuel Injector is in Information Layer.
+0.448  Engine control software is in Information Layer.
+0.668  Volvo D13 Engine is in System Layer.
+0.639  Volvo FH16 is in System Layer.
+0.353  Injector manufacturer is in Organization Layer.
+0.508  Volvo Group is in Organization Layer.
+0.225  Purchasing is in Process Layer.
+0.267  Predictive maintenance is in Process Layer.
+0.235  SAP ERP / PLM is in Process Layer.
+0.612  Euro 7 complies_with Engine Fuel Injector.
+0.669  Engine Fuel Injector part_of Volvo D13 Engine.
+0.562  Volvo D13 Engine installed_in Volvo FH16.
+0.538  Engine control software controls Volvo D13 Engine.
+0.455  Injector manufacturer manufactures Engine Fuel Injector.
+0.546  Injector manufacturer supplies_to Volvo Group.
+0.429  Volvo Group uses SAP ERP / PLM.
+0.459  Purchasing sources Engine Fuel Injector.
+0.509  Predictive maintenance uses_data_from Engine Fuel Injector.
+0.192  Predictive maintenance manages SAP ERP / PLM.  <-- low
+
+Combined text: Euro 7 is in Information Layer. Engine Fuel Injector is in Information Layer. Engine control software is in Information Layer. Volvo D13 Engine is in System Layer. Volvo FH16 is in System Layer. Injector manufacturer is in Organization Layer. Volvo Group is in Organization Layer. Purchasing is in Process Layer. Predictive maintenance is in Process Layer. SAP ERP / PLM is in Process Layer. Euro 7 complies_with Engine Fuel Injector. Engine Fuel Injector part_of Volvo D13 Engine. Volvo D13 Engine installed_in Volvo FH16. Engine control software controls Volvo D13 Engine. Injector manufacturer manufactures Engine Fuel Injector. Injector manufacturer supplies_to Volvo Group. Volvo Group uses SAP ERP / PLM. Purchasing sources Engine Fuel Injector. Predictive maintenance uses_data_from Engine Fuel Injector. Predictive maintenance manages SAP ERP / PLM.
+Overall alignment: 0.748
+
+--- Run 2: sentences and alignment (vs. image text) ---
+0.421  Euro 7 is in Information Layer.
+0.616  Engine Fuel Injector is in Information Layer.
+0.448  Engine control software is in Information Layer.
+0.668  Volvo D13 Engine is in System Layer.
+0.639  Volvo FH16 is in System Layer.
+0.353  Injector manufacturer is in Organization Layer.
+0.508  Volvo Group is in Organization Layer.
+0.225  Purchasing is in Process Layer.
+0.267  Predictive maintenance is in Process Layer.
+0.235  SAP ERP / PLM is in Process Layer.
+0.612  Euro 7 COMPLIES_WITH Engine Fuel Injector.
+0.669  Engine Fuel Injector PART_OF Volvo D13 Engine.
+0.562  Volvo D13 Engine INSTALLED_IN Volvo FH16.
+0.538  Engine control software CONTROLS Volvo D13 Engine.
+0.455  Injector manufacturer MANUFACTURES Engine Fuel Injector.
+0.546  Injector manufacturer SUPPLIES_TO Volvo Group.
+0.459  Purchasing SOURCES Engine Fuel Injector.
+0.509  Predictive maintenance USES_DATA_FROM Engine Fuel Injector.
+0.192  Predictive maintenance MANAGES SAP ERP / PLM.  <-- low
+0.429  Volvo Group USES SAP ERP / PLM.
+
+Combined text: Euro 7 is in Information Layer. Engine Fuel Injector is in Information Layer. Engine control software is in Information Layer. Volvo D13 Engine is in System Layer. Volvo FH16 is in System Layer. Injector manufacturer is in Organization Layer. Volvo Group is in Organization Layer. Purchasing is in Process Layer. Predictive maintenance is in Process Layer. SAP ERP / PLM is in Process Layer. Euro 7 COMPLIES_WITH Engine Fuel Injector. Engine Fuel Injector PART_OF Volvo D13 Engine. Volvo D13 Engine INSTALLED_IN Volvo FH16. Engine control software CONTROLS Volvo D13 Engine. Injector manufacturer MANUFACTURES Engine Fuel Injector. Injector manufacturer SUPPLIES_TO Volvo Group. Purchasing SOURCES Engine Fuel Injector. Predictive maintenance USES_DATA_FROM Engine Fuel Injector. Predictive maintenance MANAGES SAP ERP / PLM. Volvo Group USES SAP ERP / PLM.
+Overall alignment: 0.755
+
+--- Metrics ---
+Valid runs: 2/2
+Consistency: 0.682
+Average sentence alignment: 0.468
+Sentences below 0.20: 2/40
+Overall alignment (avg): 0.751
+Risk classification: High

@@ -22,7 +22,6 @@ from sentence_transformers import SentenceTransformer
 
 
 # ---------------- CONFIG ----------------
-# MODEL = "llama3.2:1b"
 MODEL = "gemma4:31b-cloud"  # image checking in cloud model
 OLLAMA_URL = "http://localhost:11434/api/generate"
 REQUEST_TIMEOUT = 600

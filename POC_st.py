@@ -18,8 +18,8 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 import ollama
 
-MODEL = "llama3.2:1b"
-# MODEL = "gemma4:31b-cloud"
+# MODEL = "llama3.2:1b" # local model test
+MODEL = "gemma4:31b-cloud"
 SOURCE_FILE = "jupitermoons.txt"
 QUESTION = "How many moons does Jupiter have?"
 OUTPUT_FILE = "poc_results_semantic.json"
