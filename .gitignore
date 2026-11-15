@@ -1,4 +1,5 @@
 *.json
 *.md
 !README.md
+!docs/*.md
 *.bat
