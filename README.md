@@ -35,12 +35,12 @@ This prototype explores quality assurance for model-generated answers and knowle
 
 Supporting test documentation, rules, printouts and scope are collected in the [`docs/`](docs/) folder. Example inputs are in the project root.
 
-- [QA graph to JSON](docs/QA_graph_to_JSON.pdf): a project-created Volvo truck spare-part knowledge graph, its generated description, a JSON representation and a test printout. The test description is on the last page.
+- [QA graph to JSON](docs/QA_graph_to_JSON.pdf?raw=1): a project-created Volvo truck spare-part knowledge graph, its generated description, a JSON representation and a test printout. The test description is on the last page.
 - Error example: [graph image](docs/Graph_error.jpeg) and [screen output](docs/Screen_output_error.txt). Adding an arrow to the image confused JSON creation, and the QA script flagged High risk. 
 - [QA rule pack](docs/QA%20Rule%20Pack.md).
 - [Semantic closeness check explained](docs/Semenatic%20closeness%20check%20explained.md).
 - [Result-based actions](docs/Result-based%20actions.md).
-- [Project scope](docs/Scope%20QA-project.pdf).
+- [Project scope](docs/Scope%20QA-project.pdf?raw=1)).
 
 Example results in short, using a cloud model:
 
