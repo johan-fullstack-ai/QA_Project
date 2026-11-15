@@ -2,6 +2,22 @@
 
 This prototype explores quality assurance for model-generated answers and knowledge graphs. One script evaluates repeated answers to a question against a supplied source text. The other evaluates JSON nodes and relationships generated from a knowledge graph image against a text description of that image. Both report a risk level based on variation and semantic alignment.
 
+## Table of contents
+
+- [Features](#features)
+- [Tech stack](#tech-stack)
+- [Test results and deep project knowledge](#test-results-and-deep-project-knowledge)
+- [Diagrams](#diagrams)
+  - [Project architecture](#project-architecture)
+  - [Text QA workflow](#text-qa-workflow)
+  - [Image QA workflow](#image-qa-workflow)
+- [How to use](#how-to-use)
+  - [Text QA](#text-qa)
+  - [Image and graph QA](#image-and-graph-qa)
+- [Local setup](#local-setup)
+- [Reflection Report](#reflection-report)
+- [Credits](#credits)
+
 ## Features
 
 - Run a source-grounded question repeatedly and measure answer consistency and semantic alignment.
