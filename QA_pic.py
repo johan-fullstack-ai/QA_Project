@@ -269,7 +269,7 @@ def similarity(a, b):
     b_n = normalize_text(b)
     if not a_n or not b_n:
         return 0.0
-    return SequenceMatcher(None, a_n, b_n, autojunk=False).ratio() # The autofunk false is needed to have strings over 200 characters compared correctly.
+    return SequenceMatcher(None, a_n, b_n, autojunk=False).ratio() # The autojunk false is needed to have strings over 200 characters compared correctly.
 
 
 def compute_consistency(outputs):
