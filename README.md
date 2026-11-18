@@ -210,7 +210,9 @@ The script asks the same question five times by default, prints the responses an
 
 The script processes both images, validates each graph and writes `QA_pic_results.json` and `QA_pic2_results.json`, overwriting previous results. It reuses existing descriptions automatically and, by default, existing per-run graph files. To generate new graphs, set `REUSE_GRAPH_FILES = False`; this overwrites the corresponding graph files. To generate a fresh description, move or rename the existing description file first. Generation requires a running Ollama service and an available vision model.
 
-With the default fast chunk mode, any sentence scoring below 0.186 against its best-matching description chunk produces High risk. Otherwise, consistency below 0.60 produces Medium risk, and the rest are Low risk. If fast chunk mode is disabled, the alignment threshold is 0.5. Invalid graph runs are excluded; if there are no valid runs, no result is saved. A consistency score from only one valid run is not meaningful. Calibrate thresholds for your own data.
+With the default fast chunk mode (FAST_CHUNK_TEXT_MODE = True), each description section is grouped into chunks of up to 200 words, with the section heading included in each chunk. Long sections are split at word boundaries, so a chunk may span multiple lines or sentences. This usually produces fewer, larger chunks. If fast chunk mode is disabled, each non-empty line becomes its own chunk, again with the section heading; long lines are not split by the word limit.
+
+Each sentence is compared with its best-matching description chunk. A score below 0.186 in fast mode—or below 0.5 when fast mode is disabled—produces High risk. Otherwise, consistency below 0.60 produces Medium risk, and the rest are Low risk. Invalid graph runs are excluded; if there are no valid runs, no result is saved. A consistency score from only one valid run is not meaningful. Calibrate thresholds for your own data.
 
 ## Local setup
 
@@ -243,6 +245,8 @@ The first use of `all-MiniLM-L6-v2` may download model files, so an internet con
 ## Reflection Report
 
 The core project idea was to develop quality assurance rules. To exercise those rules in a practical setting, Python tools were created to test text-based retrieval-augmented generation (RAG) and image-derived knowledge graphs. The image workflow also produces a text description of the image, so an image to text tool was indirectly created too.
+
+The biggest takeaway with the project is the QA Rule Pack which sets a framework to do quality assurance. The most important principles are grounding, consistency and a clear structure.
 
 **Recommendation for further development:** test with real images and graphs rather than only project-created examples, and integrate with in-house models.
 
