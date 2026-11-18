@@ -40,7 +40,7 @@ Supporting test documentation, rules, printouts and scope are collected in the [
 - [QA rule pack](docs/QA%20Rule%20Pack.md).
 - [Semantic closeness check explained](docs/Semenatic%20closeness%20check%20explained.md).
 - [Result-based actions](docs/Result-based%20actions.md).
-- [Project scope](docs/Scope%20QA-project.pdf?raw=1)).
+- [Project scope](docs/Scope%20QA-project.pdf?raw=1).
 
 Example results in short, using a cloud model:
 
