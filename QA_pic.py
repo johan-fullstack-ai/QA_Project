@@ -42,6 +42,9 @@ OUTPUT_FILE2 = "QA_pic2_results.json"
 
 REPEATS = 5
 
+# When True, an existing image description file is re-used instead of being generated again.
+REUSE_IMAGE_DESCRIPTION = True
+
 # When True, existing per-run JSON graph files are re-used instead of being generated again.
 REUSE_GRAPH_FILES = True
 
@@ -470,7 +473,7 @@ def run_test(test):
     # 1. Plain-text description of the image (the reference text). Reused if it already exists.
     print("Describing the image...")
     time.sleep(1)
-    if os.path.exists(description_file):
+    if REUSE_IMAGE_DESCRIPTION and os.path.exists(description_file):
         with open(description_file, "r", encoding="utf-8") as f:
             image_text = f.read().strip()
     else:
