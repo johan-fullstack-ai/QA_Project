@@ -299,9 +299,6 @@ def classify_risk(consistency_score, low_sentence_count):
 
 
 # ---------------- Embeddings & similarity ----------------
-# Cosine similarity between two embedding vectors.
-def cosine(a, b):
-    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
 
 def chunk_text_word_limited(text, max_words=MAX_CHUNK_WORDS):
     """
@@ -424,13 +421,14 @@ def chunk_text(text, max_words=MAX_CHUNK_WORDS):
 def check_alignment(sentences, image_text):
     chunks = chunk_text(image_text)
 
+    # Create normalized embeddings from text strings
     emb_chunks = embedder.encode(chunks, normalize_embeddings=True)
     emb_sentences = embedder.encode(sentences, normalize_embeddings=True)
 
     matrix_sentences = np.array(emb_sentences)
     matrix_chunks = np.array(emb_chunks)
 
-    # Compute similarity for all pairs using a matrix dot product.
+    # Compute cosine similarity for all pairs using a matrix dot product.
     # We transpose the chunks matrix (.T) from (num_chunks, embedding_dim) 
     # to (embedding_dim, num_chunks) so the inner dimensions match for multiplication. 
     # This expects normalized embeddings.
