@@ -17,6 +17,7 @@ This prototype explores quality assurance for model-generated answers and knowle
 - [Local setup](#local-setup)
 - [Reflection Report](#reflection-report)
 - [Credits](#credits)
+- [License](#license)
 
 ## Features
 
@@ -255,3 +256,7 @@ The biggest takeaway with the project is the QA Rule Pack which sets a framework
 - Developer: Johan Granvinge
 - Project idea: Ortelius
 - Support: GitHub Copilot
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
